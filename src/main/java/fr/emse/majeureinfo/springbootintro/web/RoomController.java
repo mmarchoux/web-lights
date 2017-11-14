@@ -7,6 +7,7 @@ import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDaoImpl;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +35,7 @@ public class RoomController {
 
 
 
+
     @GetMapping(value = "/api/rooms/list-with-on-lights")
     public List<RoomDto> listWithOnLight() {
         return new RoomDaoImpl().findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
@@ -41,7 +43,10 @@ public class RoomController {
 
 }
 
-    @GetMapping
+
+
+    @GetMapping(value="/{id}")
+
     public RoomDto get(Long roomId) {
         Room room = roomDao.findOne(roomId);
         if(room!=null){
@@ -50,31 +55,22 @@ public class RoomController {
             return  roomDto;}
     }
 
-    @GetMapping
+    @PutMapping(value="/{id}/switchlight")
         public RoomDto switchLight(Long roomId) {
             Room room = roomDao.findOne(roomId);
-            Status state = room.getLight().getStatus();
-            if(state==Status.ON)
-            {room.getLight().setStatus(Status.OFF);}
-            else
-            { room.getLight().setStatus(Status.ON);}
-            room = roomDao.save(room);
-            RoomDto roomDto = new RoomDto(room);
-            return  roomDto;}
+            room.switchLight();
+            RoomDto roomDto = new RoomDto(roomDao.save(room));
+            return  roomDto;
+    }
 
 
     }
 
-    @GetMapping
+    @PutMapping(value="/{id}/switchRinger")
     public RoomDto switchRinger(Long roomId) {
         Room room = roomDao.findOne(roomId);
-        Status state = room.getNoise().getStatus();
-        if(state==Status.ON)
-        {room.getNoise().setStatus(Status.OFF);}
-        else
-        { room.getNoise().setStatus(Status.ON);}
-        room = roomDao.save(room);
-        RoomDto roomDto = new RoomDto(room);
+        room.switchRinger();
+        RoomDto roomDto = new RoomDto(roomDao.save(room));
         return  roomDto;}
 
 

@@ -46,7 +46,27 @@ public class Room {
         return noise;
     }
 
-    public void setNoise(Noise noise) {
+    public void setNoise(Noise noise)
+    {
         this.noise = noise;
+    }
+
+    public void switchLight(){
+
+    }Status state = this.getLight().getStatus();
+            if(state==Status.ON)
+    {this.getLight().setStatus(Status.OFF);}
+            else
+    { this.getLight().setStatus(Status.ON);}
+
+
+    public void switchRinger(){
+
+        Status state = this.getNoise().getStatus();
+        if(state==Status.ON)
+        {this.getNoise().setStatus(Status.OFF);}
+        else
+        { this.getNoise().setStatus(Status.ON);}
+
     }
 }
