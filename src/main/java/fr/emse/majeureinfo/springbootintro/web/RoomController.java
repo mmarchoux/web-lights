@@ -5,10 +5,13 @@ import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDao;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@RestController
 @RequestMapping(value = "/api/rooms")
 @Transactional
 public class RoomController {
@@ -24,5 +27,11 @@ public class RoomController {
     public List<RoomDto> list() {
         return roomDao.findAll().stream().map(RoomDto::new).collect(Collectors.toList());
     }
+
+
+
+/*    public List<RoomDto> listWithOnLight() {
+        return findRoomsWithOnLight();
+    }*/
 
 }
