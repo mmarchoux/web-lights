@@ -34,9 +34,7 @@ public class RoomController {
     }
 
 
-
-
-    @GetMapping(value = "/api/rooms/list-with-on-lights")
+    @GetMapping(value = "/list-with-on-lights")
     public List<RoomDto> listWithOnLight() {
         return new RoomDaoImpl().findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
     }
