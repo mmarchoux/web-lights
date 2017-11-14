@@ -42,7 +42,6 @@ public class RoomController {
 
 
     @GetMapping(value="/{id}")
-
     public RoomDto get(Long roomId) {
         Room room = roomDao.findOne(roomId);
         RoomDto roomDto = null;
