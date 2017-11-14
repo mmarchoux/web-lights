@@ -22,7 +22,7 @@ public class RoomDaoImpl implements RoomDaoCustom {
                 .getResultList();
     }
 
-    
+
     public List<Room> findRoomsWithOnLight(){
         String jpql = "select rm from Room rm join Light lt where lt.Status = :value";
         TypedQuery<Room> query = em.createQuery(jpql, Room.class);

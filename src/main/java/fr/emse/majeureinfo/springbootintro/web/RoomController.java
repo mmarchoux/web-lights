@@ -2,6 +2,7 @@ package fr.emse.majeureinfo.springbootintro.web;
 
 
 import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDao;
+import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDaoImpl;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +30,9 @@ public class RoomController {
     }
 
 
-
-/*    public List<RoomDto> listWithOnLight() {
-        return findRoomsWithOnLight();
-    }*/
+    @GetMapping(value = "/api/rooms/list-with-on-lights")
+    public List<RoomDto> listWithOnLight() {
+        return new RoomDaoImpl().findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
+    }
 
 }
