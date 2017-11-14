@@ -5,6 +5,7 @@ import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDao;
 
 import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDaoImpl;
 
+import fr.emse.majeureinfo.springbootintro.model.Room;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,18 +40,16 @@ public class RoomController {
         return new RoomDaoImpl().findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
     }
 
-}
-
-
 
     @GetMapping(value="/{id}")
 
     public RoomDto get(Long roomId) {
         Room room = roomDao.findOne(roomId);
+        RoomDto roomDto = null;
         if(room!=null){
-        RoomDto roomDto = new RoomDto(room);
+        roomDto = new RoomDto(room);}
 
-            return  roomDto;}
+        return  roomDto;
     }
 
     @PutMapping(value="/{id}/switchlight")
@@ -61,16 +60,12 @@ public class RoomController {
             return  roomDto;
     }
 
-
-    }
-
     @PutMapping(value="/{id}/switchRinger")
     public RoomDto switchRinger(Long roomId) {
         Room room = roomDao.findOne(roomId);
         room.switchRinger();
         RoomDto roomDto = new RoomDto(roomDao.save(room));
         return  roomDto;}
-
 
 }
 
