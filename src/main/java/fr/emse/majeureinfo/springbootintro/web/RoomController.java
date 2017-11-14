@@ -7,6 +7,7 @@ import fr.emse.majeureinfo.springbootintro.model.Room;
 import fr.emse.majeureinfo.springbootintro.model.Status;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class RoomController {
             return  roomDto;}
     }
 
-    @GetMapping(value="/{id}/switchlight")
+    @PutMapping(value="/{id}/switchlight")
         public RoomDto switchLight(Long roomId) {
             Room room = roomDao.findOne(roomId);
             room.switchLight();
@@ -49,7 +50,7 @@ public class RoomController {
 
     }
 
-    @GetMapping(value="/{id}/switchRinger")
+    @PutMapping(value="/{id}/switchRinger")
     public RoomDto switchRinger(Long roomId) {
         Room room = roomDao.findOne(roomId);
         room.switchRinger();
