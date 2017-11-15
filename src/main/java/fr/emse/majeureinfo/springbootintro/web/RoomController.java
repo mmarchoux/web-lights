@@ -56,7 +56,7 @@ public class RoomController {
             return  roomDto;
     }
 
-    @PutMapping(value="/{roomId}/switchRinger")
+    @PutMapping(value="/{roomId}/switchringer")
     public RoomDto switchRinger(@PathVariable Long roomId) {
         Room room = roomDao.findOne(roomId);
         room.switchRinger();
