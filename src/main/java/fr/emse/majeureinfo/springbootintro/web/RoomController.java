@@ -41,7 +41,7 @@ public class RoomController {
     }
 
 
-    @GetMapping(value="/{id}")
+    @GetMapping(value="/{roomId}")
     public RoomDto get(Long roomId) {
         Room room = roomDao.findOne(roomId);
         RoomDto roomDto = null;
@@ -51,7 +51,7 @@ public class RoomController {
         return  roomDto;
     }
 
-    @PutMapping(value="/{id}/switchlight")
+    @PutMapping(value="/{roomID}/switchlight")
         public RoomDto switchLight(Long roomId) {
             Room room = roomDao.findOne(roomId);
             room.switchLight();
@@ -59,7 +59,7 @@ public class RoomController {
             return  roomDto;
     }
 
-    @PutMapping(value="/{id}/switchRinger")
+    @PutMapping(value="/{roomID}/switchRinger")
     public RoomDto switchRinger(Long roomId) {
         Room room = roomDao.findOne(roomId);
         room.switchRinger();

@@ -7,24 +7,24 @@ import fr.emse.majeureinfo.springbootintro.model.Light;
 public class RoomDto {
 
     private final Long id;
-    private final Light light;
-    private final Noise noise;
+    private final Light lightDto;
+    private final Noise noiseDto;
 
     public RoomDto(Room room) {
         this.id = room.getId();
-        this.light = room.getLight();
-        this.noise = room.getNoise();
+        this.lightDto = room.getLight();
+        this.noiseDto = room.getNoise();
     }
 
     public Long getId() {
         return id;
     }
 
-    public Light getLight() {
-        return light;
+    public Light getLightDto() {
+        return lightDto;
     }
 
-    public Noise getNoise() {
-        return noise;
+    public Noise getNoiseDto() {
+    return noiseDto;
     }
 }
