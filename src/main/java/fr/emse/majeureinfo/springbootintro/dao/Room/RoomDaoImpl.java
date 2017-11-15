@@ -2,6 +2,7 @@ package fr.emse.majeureinfo.springbootintro.dao.Room;
 
 
 import fr.emse.majeureinfo.springbootintro.model.Room;
+import fr.emse.majeureinfo.springbootintro.model.Status;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,19 +15,10 @@ public class RoomDaoImpl implements RoomDaoCustom {
     @PersistenceContext
     private EntityManager em;
 
-    @Override
-    public List<Room> findOnRooms() {
-        String jpql = "select '*' from Room";
-        TypedQuery<Room> query = em.createQuery(jpql, Room.class);
-        return query.getResultList();
-    }
-    /*rm where rm.light_id = :value*/
-    /*.setParameter("value", 1 )*/
-
     public List<Room> findRoomsWithOnLight(){
-        String jpql = "select rm from Room rm join Light lt where lt.Status = :value";
+        String jpql = "select rm from Room rm where rm.light.status = :value";
         TypedQuery<Room> query = em.createQuery(jpql, Room.class);
-        return query.setParameter("value", ON )
+        return query.setParameter("value", Status.ON )
                 .getResultList();
     }
 
