@@ -16,12 +16,12 @@ public class RoomDaoImpl implements RoomDaoCustom {
 
     @Override
     public List<Room> findOnRooms() {
-        String jpql = "select rm from Room rm where rm.light_id = :value";
+        String jpql = "select '*' from Room";
         TypedQuery<Room> query = em.createQuery(jpql, Room.class);
-        return query.setParameter("value", 1 )
-                .getResultList();
+        return query.getResultList();
     }
-
+    /*rm where rm.light_id = :value*/
+    /*.setParameter("value", 1 )*/
 
     public List<Room> findRoomsWithOnLight(){
         String jpql = "select rm from Room rm join Light lt where lt.Status = :value";
@@ -29,4 +29,5 @@ public class RoomDaoImpl implements RoomDaoCustom {
         return query.setParameter("value", ON )
                 .getResultList();
     }
+
 }

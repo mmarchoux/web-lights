@@ -8,5 +8,7 @@ public interface RoomDaoCustom {
 
     public List<Room> findOnRooms();
 
+    public List<Room> findRoomsWithOnLight();
+
 
 }
