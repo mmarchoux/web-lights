@@ -1,30 +1,32 @@
 package fr.emse.majeureinfo.springbootintro.web;
 
 import fr.emse.majeureinfo.springbootintro.model.Room;
-import fr.emse.majeureinfo.springbootintro.model.Noise;
-import fr.emse.majeureinfo.springbootintro.model.Light;
 
 public class RoomDto {
 
     private final Long id;
-    private final Light lightDto;
-    private final Noise noiseDto;
+
+    private final LightDto light;
+    private final NoiseDto noise;
 
     public RoomDto(Room room) {
         this.id = room.getId();
-        this.lightDto = room.getLight();
-        this.noiseDto = room.getNoise();
+        this.light = room.getLight()==null ? null:new LightDto(room.getLight());
+        this.noise = room.getNoise()==null ? null:new NoiseDto(room.getNoise());
+
     }
 
     public Long getId() {
         return id;
     }
 
-    public Light getLightDto() {
-        return lightDto;
+
+    public LightDto getLight() {
+        return light;
     }
 
-    public Noise getNoiseDto() {
-    return noiseDto;
+    public NoiseDto getNoise() {
+        return noise;
+
     }
 }

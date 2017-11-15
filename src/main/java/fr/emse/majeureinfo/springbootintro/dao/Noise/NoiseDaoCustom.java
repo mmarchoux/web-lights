@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface NoiseDaoCustom {
 
-    public List<Noise> findOnNoises();
+    public List<Noise> findOnNoise();
+
 }

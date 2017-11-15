@@ -3,7 +3,7 @@ package fr.emse.majeureinfo.springbootintro.model;
 import javax.persistence.*;
 
 @Entity     //objet java mapper avec base SQL
-//@SuppressWarnings("serial")
+@SuppressWarnings("serial")
 public class Room {
 
     @Id

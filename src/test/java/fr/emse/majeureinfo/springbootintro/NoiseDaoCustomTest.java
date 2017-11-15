@@ -7,7 +7,7 @@ import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.DeleteAll;
 import com.ninja_squad.dbsetup.operation.Insert;
 import com.ninja_squad.dbsetup.operation.Operation;
-import fr.emse.majeureinfo.springbootintro.dao.Noise.NoiseDao;
+import fr.emse.majeureinfo.springbootintro.dao.Noise.RoomDao;
 import fr.emse.majeureinfo.springbootintro.model.Status;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -29,7 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class NoiseDaoCustomTest {
 
     @Autowired
-    private NoiseDao noiseDao;
+    private RoomDao noiseDao;
 
 
     @Qualifier("dataSource")
@@ -60,7 +60,7 @@ public class NoiseDaoCustomTest {
     @Test
     public void shouldFindOnNoises() {
         TRACKER.skipNextLaunch();
-        Assertions.assertThat(noiseDao.findOnNoises()).hasSize(1);
+        Assertions.assertThat(noiseDao.findOnNoise()).hasSize(1);
     }
 
 

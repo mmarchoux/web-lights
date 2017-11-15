@@ -6,11 +6,9 @@ import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDao;
 import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDaoImpl;
 
 import fr.emse.majeureinfo.springbootintro.model.Room;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +22,8 @@ public class RoomController {
     private final RoomDao roomDao;
 
 
-    public RoomController(RoomDao roomDao) {
+    @Autowired
+    RoomController(RoomDao roomDao) {
         this.roomDao = roomDao;
     }
 
@@ -35,14 +34,15 @@ public class RoomController {
     }
 
 
-    @GetMapping(value = "/list-with-on-lights")
+    @GetMapping(value = "/list-with-on-light")
     public List<RoomDto> listWithOnLight() {
-        return new RoomDaoImpl().findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
+        return roomDao.findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
     }
 
 
     @GetMapping(value="/{roomId}")
-    public RoomDto get(Long roomId) {
+
+    public RoomDto get(@PathVariable Long roomId) {
         Room room = roomDao.findOne(roomId);
         RoomDto roomDto = null;
         if(room!=null){
@@ -51,16 +51,18 @@ public class RoomController {
         return  roomDto;
     }
 
-    @PutMapping(value="/{roomID}/switchlight")
-        public RoomDto switchLight(Long roomId) {
+
+    @PutMapping(value="/{roomId}/switchlight")
+        public RoomDto switchLight( @PathVariable Long roomId) {
             Room room = roomDao.findOne(roomId);
             room.switchLight();
             RoomDto roomDto = new RoomDto(roomDao.save(room));
             return  roomDto;
     }
 
-    @PutMapping(value="/{roomID}/switchRinger")
-    public RoomDto switchRinger(Long roomId) {
+
+    @PutMapping(value="/{roomId}/switchringer")
+    public RoomDto switchRinger(@PathVariable Long roomId) {
         Room room = roomDao.findOne(roomId);
         room.switchRinger();
         RoomDto roomDto = new RoomDto(roomDao.save(room));
