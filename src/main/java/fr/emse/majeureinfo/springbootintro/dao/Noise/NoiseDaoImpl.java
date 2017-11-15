@@ -14,7 +14,7 @@ public class NoiseDaoImpl implements NoiseDaoCustom {
     private EntityManager em;
 
     @Override
-    public List<Noise> findOnNoises() {
+    public List<Noise> findOnNoise() {
         String jpql = "select ns from Noise ns where ns.status = :value";
         TypedQuery<Noise> query = em.createQuery(jpql, Noise.class);
         return query.setParameter("value", Status.ON)

@@ -6,6 +6,7 @@ import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDao;
 import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDaoImpl;
 
 import fr.emse.majeureinfo.springbootintro.model.Room;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,8 @@ public class RoomController {
     private final RoomDao roomDao;
 
 
-    public RoomController(RoomDao roomDao) {
+    @Autowired
+    RoomController(RoomDao roomDao) {
         this.roomDao = roomDao;
     }
 
@@ -32,9 +34,9 @@ public class RoomController {
     }
 
 
-    @GetMapping(value = "/list-with-on-lights")
+    @GetMapping(value = "/list-with-on-light")
     public List<RoomDto> listWithOnLight() {
-        return new RoomDaoImpl().findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
+        return roomDao.findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
     }
 
 
