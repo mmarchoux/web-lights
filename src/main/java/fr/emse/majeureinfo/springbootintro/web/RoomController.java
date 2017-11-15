@@ -7,10 +7,7 @@ import fr.emse.majeureinfo.springbootintro.dao.Room.RoomDaoImpl;
 
 import fr.emse.majeureinfo.springbootintro.model.Room;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,8 +38,8 @@ public class RoomController {
     }
 
 
-    @GetMapping(value="/{id}")
-    public RoomDto get(Long roomId) {
+    @GetMapping(value="/{roomId}")
+    public RoomDto get(@PathVariable Long roomId) {
         Room room = roomDao.findOne(roomId);
         RoomDto roomDto = null;
         if(room!=null){
@@ -51,16 +48,16 @@ public class RoomController {
         return  roomDto;
     }
 
-    @PutMapping(value="/{id}/switchlight")
-        public RoomDto switchLight(Long roomId) {
+    @PutMapping(value="/{roomId}/switchlight")
+        public RoomDto switchLight( @PathVariable Long roomId) {
             Room room = roomDao.findOne(roomId);
             room.switchLight();
             RoomDto roomDto = new RoomDto(roomDao.save(room));
             return  roomDto;
     }
 
-    @PutMapping(value="/{id}/switchRinger")
-    public RoomDto switchRinger(Long roomId) {
+    @PutMapping(value="/{roomId}/switchRinger")
+    public RoomDto switchRinger(@PathVariable Long roomId) {
         Room room = roomDao.findOne(roomId);
         room.switchRinger();
         RoomDto roomDto = new RoomDto(roomDao.save(room));
