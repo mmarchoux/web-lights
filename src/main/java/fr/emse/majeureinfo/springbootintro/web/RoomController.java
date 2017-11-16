@@ -51,19 +51,20 @@ public class RoomController {
     }
 
     @PutMapping(value="/{roomId}/switchlight")
-        public RoomDto switchLight( @PathVariable Long roomId) {
+        public List<RoomDto>  switchLight( @PathVariable Long roomId) {
             Room room = roomDao.findOne(roomId);
             room.switchLight();
             RoomDto roomDto = new RoomDto(roomDao.save(room));
-            return  roomDto;
+            return  roomDao.findAll().stream().map(RoomDto::new).collect(Collectors.toList());
     }
 
     @PutMapping(value="/{roomId}/switchringer")
-    public RoomDto switchRinger(@PathVariable Long roomId) {
+    public  List<RoomDto> switchRinger(@PathVariable Long roomId) {
         Room room = roomDao.findOne(roomId);
         room.switchRinger();
         RoomDto roomDto = new RoomDto(roomDao.save(room));
-        return  roomDto;}
+        return  roomDao.findAll().stream().map(RoomDto::new).collect(Collectors.toList());
+    }
 
 }
 
