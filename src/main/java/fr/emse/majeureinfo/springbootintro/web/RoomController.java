@@ -39,6 +39,21 @@ public class RoomController {
         return roomDao.findRoomsWithOnLight().stream().map(RoomDto::new).collect(Collectors.toList());
     }
 
+    @GetMapping(value = "/list-with-off-light")
+    public List<RoomDto> listWithOffLight() {
+        return roomDao.findRoomsWithOffLight().stream().map(RoomDto::new).collect(Collectors.toList());
+    }
+
+    @GetMapping(value = "/list-with-on-noise")
+    public List<RoomDto> listWithOnNoise() {
+        return roomDao.findRoomsWithOnNoise().stream().map(RoomDto::new).collect(Collectors.toList());
+    }
+
+    @GetMapping(value = "/list-with-off-noise")
+    public List<RoomDto> listWithOffNoise() {
+        return roomDao.findRoomsWithOffNoise().stream().map(RoomDto::new).collect(Collectors.toList());
+    }
+
 
     @GetMapping(value="/{roomId}")
 

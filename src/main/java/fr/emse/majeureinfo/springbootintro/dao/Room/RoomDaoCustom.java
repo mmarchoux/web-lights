@@ -9,5 +9,11 @@ public interface RoomDaoCustom {
 
     public List<Room> findRoomsWithOnLight();
 
+    public List<Room> findRoomsWithOffLight();
+
+    public List<Room> findRoomsWithOnNoise();
+
+    public List<Room> findRoomsWithOffNoise();
+
 
 }
