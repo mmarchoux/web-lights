@@ -1,14 +1,14 @@
 # web-lights
 
 
-##Objects
+## Objects
 
-###Status
+### Status
 **type :** enum
 
 **values :** ON, OFF
 
-###Light
+### Light
  
 | **Name**  |     id   |   level    |   status  |
 | --------- | -------- | ---------  | --------- |
@@ -22,7 +22,7 @@
 * getStatus()
 * setStatus(Status status)
 
-###Noise
+### Noise
  
 | **Name**  |     id   |   level    |   status  |
 | --------- | -------- | ---------  | --------- |
@@ -36,7 +36,7 @@
 * getStatus()
 * setStatus(Status status)
 
-###Room
+### Room
  
 | **Name**  |     id   |   light    |   noise  |
 | --------- | -------- | ---------  | -------- |
@@ -52,7 +52,7 @@
 * switchLight()
 * switchRinger()
 
-##Mapping
+## Mapping
 **origin :** /api/rooms
 
 **list of room with light on :** /list-with-on-light
