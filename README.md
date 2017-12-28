@@ -1,4 +1,4 @@
-# web-lights
+# Web-lights
 
 
 ## Objects
@@ -55,14 +55,21 @@
 ## Mapping
 **origin :** /api/rooms
 
+
 **list of room with light on :** /list-with-on-light
+
 **list of room with light off :** /list-with-off-light
 
+
 **list of room with noise on :** /list-with-on-noise
+
 **list of room with noise off :** /list-with-off-noise
+
 
 **access to a room :** /{roomId}
 
+
 **switch light :** /{roomId}/switchlight
+
 
 **switch light :** /{roomId}/switchringer
