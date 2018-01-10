@@ -14,18 +14,4 @@ public class SpringBootIntroApplication {
 
 		SpringApplication.run(SpringBootIntroApplication.class, args);
 	}
-
-
-	/*public CommandLineRunner greetingCommandLine() {
-
-		return new CommandLineRunner() {
-
-			@Override
-			public void run(String... args) throws Exception {
-
-			}
-
-
-		};
-	}*/
 }

@@ -51,6 +51,7 @@ public class Room {
         this.noise = noise;
     }
 
+
     public void switchLight() {
 
         Status state = this.getLight().getStatus();
