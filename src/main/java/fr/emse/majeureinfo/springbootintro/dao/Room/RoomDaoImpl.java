@@ -22,4 +22,27 @@ public class RoomDaoImpl implements RoomDaoCustom {
                 .getResultList();
     }
 
+    public List<Room> findRoomsWithOffLight(){
+        String jpql = "select rm from Room rm where rm.light.status = :value";
+        TypedQuery<Room> query = em.createQuery(jpql, Room.class);
+        return query.setParameter("value", Status.OFF )
+                .getResultList();
+    }
+
+    public List<Room> findRoomsWithOnNoise(){
+        String jpql = "select rm from Room rm where rm.noise.status = :value";
+        TypedQuery<Room> query = em.createQuery(jpql, Room.class);
+        return query.setParameter("value", Status.ON )
+                .getResultList();
+    }
+
+    public List<Room> findRoomsWithOffNoise(){
+        String jpql = "select rm from Room rm where rm.noise.status = :value";
+        TypedQuery<Room> query = em.createQuery(jpql, Room.class);
+        return query.setParameter("value", Status.OFF )
+                .getResultList();
+    }
+
+
+
 }

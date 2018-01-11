@@ -47,8 +47,10 @@ public class Room {
     {
         this.noise = noise;
     }
+
     public Building getBuilding() { return building; }
     public void setBuilding(Building building) { this.building = building; }
+
     public void switchLight() {
         Status state = this.getLight().getStatus();
         if (state == Status.ON) {
