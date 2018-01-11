@@ -16,43 +16,40 @@ public class Room {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Noise noise;
 
+    @ManyToOne
+    @JoinColumn(name = "building_id")
+    private Building building;
+
     @SuppressWarnings("unused")
-    public Room() {
-    }
-
-
-    public Room(Light light, Noise noise) {
+    public Room() { }
+    public Room(Light light, Noise noise, Building building) {
         this.light = light;
         this.noise = noise;
+        this.building = building;
     }
 
     public Long getId() {
         return this.id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public Light getLight() {
         return light;
     }
-
     public void setLight(Light light) {
         this.light = light;
     }
-
     public Noise getNoise() {
         return noise;
     }
-
     public void setNoise(Noise noise)
     {
         this.noise = noise;
     }
-
+    public Building getBuilding() { return building; }
+    public void setBuilding(Building building) { this.building = building; }
     public void switchLight() {
-
         Status state = this.getLight().getStatus();
         if (state == Status.ON) {
             this.getLight().setStatus(Status.OFF);
@@ -61,14 +58,18 @@ public class Room {
             this.getLight().setStatus(Status.ON);
         }
     }
-
     public void switchRinger(){
-
         Status state = this.getNoise().getStatus();
         if(state==Status.ON)
         {this.getNoise().setStatus(Status.OFF);}
         else
         { this.getNoise().setStatus(Status.ON);}
-
     }
+
+
+
+
+
+
+
 }
