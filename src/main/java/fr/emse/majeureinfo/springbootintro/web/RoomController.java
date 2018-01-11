@@ -29,7 +29,8 @@ public class RoomController {
 
     @GetMapping
     public List<RoomDto> list()
-    {
+    {   System.out.print("data vizualization");
+        System.out.println(roomDao.findAll().stream().map(RoomDto::new).collect(Collectors.toList()));
         return roomDao.findAll().stream().map(RoomDto::new).collect(Collectors.toList());
     }
 
